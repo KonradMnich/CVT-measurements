@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 
 class Data_conversion:
-    def __init__(self, in_path="raw_data/", out_path="data_step_1/"):
+    def __init__(self, in_path="raw_data/", out_path="step_1_out/"):
         self.df = pd.DataFrame()
         self.in_path = in_path
         self.out_path = out_path
@@ -25,7 +25,7 @@ class Data_conversion:
         self.df[title]=self.df[title].apply(fun)
         self.df[title].loc[0] = T
     
-    def save(self,file_name='cured_data_1.csv'):
+    def save(self,file_name='default_name.csv'):
         self.df.to_csv(self.out_path + file_name)
         
     def rpm2mps(x):
@@ -36,3 +36,11 @@ class Data_conversion:
     
     def V2m(x):
         return x/55.4
+    
+    def cumtrapz(self,col):
+        v = self.df[col].tolist()
+        w = [v[0]/1000,0]
+        for i in range(1,len(v)-1):
+            w.append(w[i]+(v[i]+v[i+1])*v[0]/2/1000)
+        self.df["integrated_"+col] = pd.Series(w)
+        

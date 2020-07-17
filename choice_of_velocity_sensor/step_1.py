@@ -15,6 +15,9 @@ servo = Dc()
 servo.get_series("r0v0a0mr.csv", "v_const", Dc.rpm2mps)
 servo.get_series("r0a1mr.csv" , "a_const", Dc.rpm2mps)
 servo.get_series("r0a1bmr.csv" , "smooth", Dc.rpm2mps)
+servo.cumtrapz('v_const')
+servo.cumtrapz('a_const')
+servo.cumtrapz('smooth')
 servo.save("v_mr.csv")
 
 #%%

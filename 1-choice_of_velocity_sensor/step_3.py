@@ -29,6 +29,6 @@ for i in range(9):
     ddxddt = np.diff(dxdt)
     a[str(i)] = ddxddt
 
-x.to_csv(path_out+'x.csv')
-v.to_csv(path_out+'v.csv')
-a.to_csv(path_out+'a.csv')
+x.to_csv(path_out+'x.csv',index=False)
+v.to_csv(path_out+'v.csv',index=False)
+a.to_csv(path_out+'a.csv',index=False)

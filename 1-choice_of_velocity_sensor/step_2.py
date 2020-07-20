@@ -28,6 +28,7 @@ for i in range(3):
     df[str(i*3)] = serv.iloc[1:,i]
     df[str(i*3+1)] = interpolate(serv.iloc[:,i], pot.iloc[:,i])
     df[str(i*3+2)] = interpolate(serv.iloc[:,i], enc.iloc[:,i])
+    '''could be done by a built in method "rolling"'''
 
 # as the series have different lengths, fill the gaps with zeros
 df.fillna(0, inplace=True)

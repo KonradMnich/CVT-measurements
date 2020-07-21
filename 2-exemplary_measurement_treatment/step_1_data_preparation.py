@@ -29,6 +29,7 @@ dc.assemble_plus(10,10)
 plt.figure()
 dc.df_basic['F [N]'].plot()
 dc.df_plus['F [N]'].plot(title="Force")
+
 #%%
 # adjust averaging window for the acceleration
 dc.assemble_plus(1,10)

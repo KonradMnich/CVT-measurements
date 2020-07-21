@@ -19,7 +19,8 @@ class DataConditioner:
         self.x_ni = np.array([])
         self.v_mr = np.array([])
         self.x_mr = np.array([])
-        self.df_ready = pd.DataFrame()
+        self.df_basic = pd.DataFrame()
+        self.df_plus = pd.DataFrame()
         self.T_ni = float()
         self.T_mr = float()
 
@@ -92,12 +93,27 @@ class DataConditioner:
     
     # create pandas DataFrame containing all needed data
     def assemble(self):
-        self.df_ready['t [s]'] = [0,*np.cumsum([self.T_mr]*(len(self.x_mr)-1))]
-        self.df_ready['F [N]'] = self.F_ni
-        self.df_ready['x [m]'] = self.x_mr
-        self.df_ready['v [m/s]'] = self.v_mr
-    
+        self.df_basic['t [s]'] = [0,*np.cumsum([self.T_mr]*(len(self.x_mr)-1))]
+        self.df_basic['F [N]'] = self.F_ni
+        self.df_basic['x [m]'] = self.x_mr
+        self.df_basic['v [m/s]'] = self.v_mr
+        
+    def assemble_plus(self,win1=1,win2=1):
+        self.df_plus['t [s]'] = self.df_basic['t [s]']
+        self.df_plus['F [N]'] = self.df_basic['F [N]'].\
+            rolling(win2,center=True).mean()
+        self.df_plus['x [m]'] = self.df_basic['x [m]']
+        self.df_plus['v [m/s]'] = self.df_basic['v [m/s]']
+        self.df_plus['a [m/s^2]'] = [0,*np.diff(self.v_mr)/self.T_mr]
+        self.df_plus['a [m/s^2]'] = self.df_plus['a [m/s^2]'].\
+            rolling(win1,center=True).mean()
+        self.df_plus.fillna(0, inplace=True)
     # save data preconditioned data to a file
     def save(self,name="preprocessed_data.csv"):
-        self.df_ready.to_csv(self.path_out+name,index=False)
+        self.df_basic.to_csv(self.path_out+name,index=False)
+        pass
+    
+    # save data preconditioned data to a file
+    def save_plus(self,name="preprocessed_data_plus.csv"):
+        self.df_plus.to_csv(self.path_out+name,index=False)
         pass

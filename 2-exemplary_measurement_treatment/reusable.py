@@ -77,8 +77,9 @@ class DataConditioner:
             w = np.append(w,[0]*diff)
             F = np.append(F,[0]*diff)
         else:
-            v = np.append(v,[0]*diff)
+            v = np.append(v,[0]*abs(diff))
             self.x_mr = v
+            self.v_mr = np.append(self.v_mr,[0]*abs(diff))
         se = sum((v[:-100]-w[:-100])**2)
         k = 0
         for i in range(len(v)):

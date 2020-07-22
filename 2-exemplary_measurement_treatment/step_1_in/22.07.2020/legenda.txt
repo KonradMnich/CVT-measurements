@@ -1,0 +1,5 @@
+a2 - stale przyspieszenie 2 m/s2
+mr{10,20,50} - dane z serwa w roznej rozdzielczosci
+mr/ni - serwo/karta ni
+v100 - stala predkosc 100rpm
+xa10 - rozpedzanie do stalej predkosci na drodze 10mm

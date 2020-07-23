@@ -53,8 +53,8 @@ class DataConditioner:
     def resample(self):
         t_old = np.arange(0,len(self.F_ni)*self.T_ni,self.T_ni)
         t_new = np.arange(0,max(t_old),self.T_mr)
-        self.F_ni = np.interp(t_new,t_old,self.F_ni)
-        self.x_ni = np.interp(t_new,t_old,self.x_ni)
+        self.F_ni = np.interp(t_new,t_old[:],self.F_ni)
+        self.x_ni = np.interp(t_new,t_old[:],self.x_ni)
         pass
     
     # scale voltage sensor output to desired SI units

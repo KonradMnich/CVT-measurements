@@ -8,13 +8,18 @@ sketch of a quick idea - > repeat for v+ and v-
 
 """
 import pandas as pd
-import numpy as np
+#import numpy as np
 
 
 #file = "step_1_in/22.07.2020/r0a1bpot.csv"
-file = "step_1_out/smooth_a5_sym_plus.csv"
-df = pd.read_csv(file,names=['F','x','v','a'],usecols=[1,2,3,4],skiprows=1)
-df['a_sign'] = df['a'].apply(np.sign)
+file = "step_1_out/meta_smooth.csv"
+df = pd.read_csv(file)
+#df['F'] = df['F']
+#df = pd.read_csv(file,names=['F','v','a'],usecols=[1,3,4],skiprows=1)
+#df['a_sign'] = df['a'].apply(np.sign)
+df['a-']=df['a']<0
+df['v**'] = df['v'].apply(lambda x: x**0.5)
+#df = df[df['a']>0]
 '''
 df = pd.read_csv(file, skiprows=4, usecols=[1,3],names=['F','x'])
 df['F'] = df['F'] - df['F'].mean()
@@ -45,7 +50,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 df.fillna(0,inplace=True)
 
-X = df[['v','a']]
+X = df[['v**','a']]
 y = df['F']
 
 # create training and test sets 
@@ -59,6 +64,7 @@ lm.fit(X_train,y_train)
 
 # print coefficients resulting from the model (inertance and viscous friction)
 coeff_df = pd.DataFrame(lm.coef_,X.columns,columns=['Coefficient'])
+print(coeff_df.head())
 print(lm.intercept_)
 
 # compute predictions based on the model
@@ -78,4 +84,4 @@ df2['+'] = [a > 0 for a in X_test['a']]
 plt.figure()
 sns.scatterplot(data=df2,x='t',y='p',hue='+')
 #ax=sns.pairplot(df[['x','v','a','F','vel_sign','F-a-const']], hue='vel_sign')
-ax=sns.pairplot(df[['v','a','F','a_sign']], hue='a_sign')
+#ax=sns.pairplot(df[['v**','a','F']])#,'a_sign']], hue='a_sign')

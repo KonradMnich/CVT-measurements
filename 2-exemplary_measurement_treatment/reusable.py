@@ -59,7 +59,7 @@ class DataConditioner:
     
     # scale voltage sensor output to desired SI units
     def scale(self):
-        self.F_ni = -(self.F_ni - np.mean(self.F_ni[0:10]))*200
+        self.F_ni = -(self.F_ni - np.mean(self.F_ni[0:10])/2)*200 #temp /2
         self.v_mr = -self.v_mr*20/60/1000
         self.x_mr = np.cumsum(self.v_mr)*self.T_mr
         self.x_ni = (self.x_ni - np.mean(self.x_ni[0:10]))

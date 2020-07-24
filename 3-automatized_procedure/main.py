@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jul 24 16:06:34 2020
+
+@author: konrad
+"""
+from preprocessor import Preprocessor
+#from processor import Processor
+#from postprocessor import Postprocessor
+
+#%% Preprocess data
+pre = Preprocessor()
+    
+'''
+pre.pare_data()
+pre_out = pre.out()
+
+#%% Perform linear regression
+pro = Processor(data=pre_out, opts='default')
+pro.cess_data()
+pro_out = pro.out()
+
+#%% Visually validate the fit
+post = Postprocessor(data=pro_out, test_series="")
+'''

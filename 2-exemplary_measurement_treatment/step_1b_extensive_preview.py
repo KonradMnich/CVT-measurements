@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 path_in = "step_1_out/"
 path_out = "step_1_out/"
-file_name = "smooth"
+file_name = "smooth_a5_sym"
 
 df_plus = pd.read_csv(path_in+file_name+"_plus.csv")
 

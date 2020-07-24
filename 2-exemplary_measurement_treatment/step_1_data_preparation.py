@@ -14,7 +14,7 @@ file_names = [("r0v0a0mr.csv","r0v0a0pot.csv"),\
               ("r0a1mr.csv","r0a1pot.csv"),\
               ("r0a1bmr.csv","r0a1bpot.csv"),\
               ("22.07.2020/v100xa10mr.csv","22.07.2020/v100xa10ni.csv")]
-file_name = '23.07.2020/smooth_a5_asym_'
+file_name = '23.07.2020/smooth_a10_sym_'
 
 # create the object performing computations
 dc = DataConditioner("step_1_in/", "step_1_out/")
@@ -40,6 +40,6 @@ dc.assemble_plus(10,5)
 dc.df_plus['a [m/s^2]'].plot(title="acceleration")
 
 #%% save
-name = "smooth_a5_asym"
+name = "smooth_a10_sym_shifted"
 dc.save(name+".csv")
 dc.save_plus(name+"_plus.csv")

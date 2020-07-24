@@ -1,3 +1,6 @@
 name,symmetric,breaks,ratios
 24072020-sym_br_r0,True,True,0
 24072020-sym_r16,True,False,16
+24072020-sym_br_r32,True,True,32
+24072020-sym_r32,True,False,32
+24072020-sym_r16_True,True,16

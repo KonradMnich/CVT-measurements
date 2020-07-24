@@ -1,0 +1,13 @@
+name,symmetric,breaks,ratios
+24072020_asym_r0,False,False,0
+24072020-sym_br_r16,True,True,16
+24072020_asym_r32,False,False,32
+24072020-sym_br_r0,True,True,0
+24072020_asym_r16,False,False,16
+24072020-sym_br_r32,True,True,32
+24072020_asym_r0,False,False,0
+24072020-sym_br_r16,True,True,16
+24072020_asym_r32,False,False,32
+24072020-sym_br_r0,True,True,0
+24072020_asym_r16,False,False,16
+24072020-sym_br_r32,True,True,32

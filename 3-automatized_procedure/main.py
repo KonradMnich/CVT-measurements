@@ -10,12 +10,10 @@ from preprocessor import Preprocessor
 #from postprocessor import Postprocessor
 
 #%% Preprocess data
-pre = Preprocessor()
-    
-'''
-pre.pare_data()
+pre = Preprocessor(list_of_inputs="list.csv",ratios=[0])
 pre_out = pre.out()
 
+'''
 #%% Perform linear regression
 pro = Processor(data=pre_out, opts='default')
 pro.cess_data()

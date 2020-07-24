@@ -7,7 +7,7 @@ Created on Fri Jul 24 16:41:37 2020
 """
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 class Preprocessor:
     def __init__(self, list_of_inputs="list_of_inputs.csv", ratios=[0,16,32],\
@@ -106,4 +106,7 @@ class Preprocessor:
             plt.plot(np.concatenate((x_ni[-ind:], x_ni[:ind])))
             plt.legend(['mr','before','after'])
             '''
+    
+    def out(self):
+        return [n[0] for n in self.scaled_mr]
             

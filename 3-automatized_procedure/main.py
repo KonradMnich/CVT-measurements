@@ -20,4 +20,4 @@ pro_out = pro.out()
 
 #%% Visually validate the fit
 post = Postprocessor(experimental_data=pre_out, coeffs=pro_out)
-post.show()
+post.show(lim2=5000)

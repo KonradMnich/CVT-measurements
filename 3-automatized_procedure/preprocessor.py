@@ -7,7 +7,7 @@ Created on Fri Jul 24 16:41:37 2020
 """
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 class Preprocessor:
     def __init__(self, list_of_inputs="list_of_inputs.csv", ratios=[0,16,32],\
@@ -30,6 +30,9 @@ class Preprocessor:
                              skiprows=4, names=['t','F','x'])
             # touples consisting of a data frame and a sampling period
             l += [(df[['F','x']].astype(float), df.iloc[1,0].astype(float))]
+            '''for debugging'''
+            plt.figure()
+            df['F'].plot()
         return l
     
     def read_mr(self):

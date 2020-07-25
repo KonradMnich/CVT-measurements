@@ -6,6 +6,7 @@ Created on Sat Jul 25 14:47:52 2020
 @author: konrad
 """
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 class Postprocessor:
     def __init__(self, experimental_data, coeffs):
@@ -20,8 +21,15 @@ class Postprocessor:
         return model
     
     def show(self,lim1=0,lim2=1000):
-        plt.figure()
-        ax = self.exp_data['F'].iloc[lim1:lim2].plot(label='experiment')
-        self.model.iloc[lim1:lim2].plot(label='model', style='--')
+        sns.set_style('whitegrid')
+        model = self.model.iloc[lim1:lim2].tolist()
+        exp = self.exp_data['F'].iloc[lim1:lim2].tolist()
+        fig = plt.figure()
+        ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+        ax.plot(exp, label='experiment')
+        ax.plot(model, label='model',linestyle='--')
+        ax.set_xlabel('Samples [-]')
+        ax.set_ylabel('F [N]')
         ax.legend()
-        #issue1 - indexes of dataframes mess up plotting
+        ax.set_title('Model vs experiment')
+        fig.set_dpi(600)

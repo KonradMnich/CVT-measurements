@@ -10,14 +10,26 @@ from processor import Processor
 from postprocessor import Postprocessor
 
 #%% Preprocess data
-pre = Preprocessor(list_of_inputs="list.csv",ratios=[0], breaks=[False])
+pre = Preprocessor(list_of_inputs="list.csv",ratios=[32], breaks=[False,True])
 pre_out = pre.out()
 
 #%% Perform linear regression
 pro = Processor(pre_out)
-pro.train()
+pro.train(pos_v=[True, False])
 pro_out = pro.out()
 
 #%% Visually validate the fit
 post = Postprocessor(experimental_data=pre_out, coeffs=pro_out)
-post.show(lim2=5000)
+post.show(lim1=2100, lim2=3000)
+
+#%% Save results
+pro.last_coeffs.to_csv('results/25072020-r32_coeffs.csv')
+
+#%% debug
+'''
+import matplotlib.pyplot as plt
+F = post.exp_data['F']
+v = post.exp_data['v']
+a = post.exp_data['a']
+plt.scatter(v,F-a*61)
+'''

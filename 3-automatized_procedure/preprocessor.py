@@ -108,5 +108,5 @@ class Preprocessor:
             '''
     
     def out(self):
-        return [n[0] for n in self.scaled_mr]
+        return pd.concat([n[0] for n in self.scaled_mr])
             

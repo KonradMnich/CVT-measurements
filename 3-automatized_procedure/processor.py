@@ -44,4 +44,5 @@ class Processor:
         sns.scatterplot(x=predictions,y=y_test)
         
     def out(self):
+        return self.last_coeffs
         pass

@@ -24,4 +24,6 @@ class Postprocessor:
         ax = self.exp_data['F'].iloc[lim1:lim2].plot(label='experiment')
         self.model.iloc[lim1:lim2].plot(label='model', style='--')
         ax.legend()
-       
+        #issue1 - indexes of dataframes mess up plotting
+        #issue2 - one input measurement is read twice. Either bug or mess
+        # in csv files

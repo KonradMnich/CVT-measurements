@@ -9,18 +9,22 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 class Postprocessor:
+    """ Postprocessor sums up the results of identification. Here we recompute
+    the force basing on the linear regression obtained by the Processor and
+    compare it with the measure force."""
+    
     def __init__(self, experimental_data, coeffs):
         self.exp_data = experimental_data
         self.coeffs = coeffs
         self.model = self.compute_model()
     
     def compute_model(self):
-        model = self.exp_data['v**']*self.coeffs.loc['viscous'].to_numpy()+\
-                self.exp_data['a']*self.coeffs.loc['inertance'].to_numpy()+\
-                self.exp_data['v_sign']*self.coeffs.loc['dry'].to_numpy()
+        model = (self.exp_data['v**'] * self.coeffs.loc['viscous'].to_numpy()
+                 + self.exp_data['a'] * self.coeffs.loc['inertance'].to_numpy()
+                 + self.exp_data['v_sign'] * self.coeffs.loc['dry'].to_numpy())
         return model
     
-    def show(self,lim1=0,lim2=1000):
+    def show(self, lim1=0, lim2=1000):
         sns.set_style('whitegrid')
         model = self.model.iloc[lim1:lim2].tolist()
         exp = self.exp_data['F'].iloc[lim1:lim2].tolist()
